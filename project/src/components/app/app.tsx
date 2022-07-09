@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import Main from 'pages/Main';
+import Main from 'pages/main';
 
 type AppScreenProps = {
   rentalAmount: number,

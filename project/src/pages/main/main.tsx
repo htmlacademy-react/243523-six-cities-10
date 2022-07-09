@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import Cart from 'components/Cart';
+import Cart from 'components/cart';
 
 export type MainPageProps = {
   rentalAmount: number;
