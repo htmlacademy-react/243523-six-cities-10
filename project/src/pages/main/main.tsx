@@ -1,10 +1,9 @@
 import {FC} from 'react';
-import Cart from 'components/cart';
+import Card from 'components/card';
 
 export type MainPageProps = {
   rentalAmount: number;
 }
-
 
 const Main: FC<MainPageProps> = ({rentalAmount}) => (
   <div className="page page--gray page--main">
@@ -96,15 +95,15 @@ const Main: FC<MainPageProps> = ({rentalAmount}) => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <Cart price={120} image='/img/apartment-01.jpg'
+              <Card price={120} image='/img/apartment-01.jpg'
                 descriptionLink='Beautiful & luxurious apartment at great location' premium='Premium' isPremium
               />
-              <Cart price={80} image='/img/room.jpg' descriptionLink='Wood and stone place'/>
-              <Cart price={132} image={'/img/apartment-02.jpg'} descriptionLink={'Canal View Prinsengracht'}/>
-              <Cart price={180} image={'/img/apartment-03.jpg'} descriptionLink={'Nice, cozy, warm big bed apartment'}
+              <Card price={80} image='/img/room.jpg' descriptionLink='Wood and stone place'/>
+              <Card price={132} image={'/img/apartment-02.jpg'} descriptionLink={'Canal View Prinsengracht'}/>
+              <Card price={180} image={'/img/apartment-03.jpg'} descriptionLink={'Nice, cozy, warm big bed apartment'}
                 premium={'Premium'} isPremium
               />
-              <Cart price={80} image={'/img/room.jpg'} descriptionLink={'Wood and stone place'}/>
+              <Card price={80} image={'/img/room.jpg'} descriptionLink={'Wood and stone place'}/>
             </div>
           </section>
           <div className="cities__right-section">
