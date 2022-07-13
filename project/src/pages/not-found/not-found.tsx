@@ -1,11 +1,12 @@
 import {FC} from 'react';
+import {Link} from 'react-router-dom';
 
 const NotFound: FC = () => (
   <section style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
     <h1 style={{
       display: 'flex',
       justifyContent: 'center',
-      fontSize: '8em',
+      fontSize: '7em',
       fontWeight: 500,
       color: 'red',
       textTransform: 'uppercase',
@@ -16,10 +17,13 @@ const NotFound: FC = () => (
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      padding: '5% 0',
-      fontSize: '3em',
+      padding: '3% 0',
+      fontSize: '24px',
+      lineHeight: '1',
       fontWeight: 400,
-      color: 'red'
+      fontStyle: 'oblique',
+      textAlign: 'center',
+      color: '#000',
     }}
     >
       Страница не найдена :(
@@ -30,16 +34,16 @@ const NotFound: FC = () => (
         justifyContent: 'center',
         alignItems: 'center',
         padding: '10px 15px',
-        fontSize: '2em',
+        fontSize: '24px',
         fontWeight: 400,
-        border: 'slateblue',
+        border: '#4481c3',
         borderRadius: '30px',
         color: 'white',
-        backgroundColor: 'slateblue',
+        backgroundColor: '#4481c3',
       }}
       >
-        <a href='/'>Вернуться на главную страницу
-        </a>
+        <Link to='/'>Вернуться на главную страницу
+        </Link>
       </button>
     </div>
   </section>
