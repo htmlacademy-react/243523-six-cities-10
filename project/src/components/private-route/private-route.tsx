@@ -1,7 +1,7 @@
 import {FC} from 'react';
 import {Navigate} from 'react-router-dom';
 
-import {AppRoute, AuthorisationStatus} from '../../types/const';
+import {AppRoute, AuthorisationStatus} from 'types/const';
 
 type PrivateRouteProps = {
   authorisationStatus: AuthorisationStatus,
