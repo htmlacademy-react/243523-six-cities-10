@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {Link} from 'react-router-dom';
 
 const NotFound: FC = () => (
-  <section style={{width: '100%', display: 'flex', flexDirection: 'column'}}>
+  <section style={{width: '100%', display: 'flex', flexDirection: 'column', backgroundColor: '#f5f5f5'}}>
     <h1 style={{
       display: 'flex',
       justifyContent: 'center',
