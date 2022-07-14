@@ -17,15 +17,9 @@ type AppScreenProps = {
 export const App: FC<AppScreenProps> = ({rentalAmount}) => (
   <BrowserRouter>
     <Routes>
+      <Route path={AppRoute.Root} element={<Main rentalAmount={rentalAmount}/>}/>
       <Route index element={<Main rentalAmount={rentalAmount}/>}/>
-      <Route
-        path={AppRoute.Root}
-        element={<Main rentalAmount={rentalAmount}/>}
-      />
       <Route path={AppRoute.Room} element={<Room/>}/>
-      <Route path='offer' element={<Room/>}>
-        <Route path=':id' element={<Room/>}/>
-      </Route>
       <Route
         path={AppRoute.Favorites}
         element={
