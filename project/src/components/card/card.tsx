@@ -8,7 +8,7 @@ export type CardProps = {
   descriptionLink: string;
 }
 
-const Cart: FC<CardProps> = ({price, premium, isPremium, image, descriptionLink}) => (
+const Card: FC<CardProps> = ({price, premium, isPremium, image, descriptionLink}) => (
   <article className="cities__card place-card">
     {isPremium &&
       <div className="place-card__mark">
@@ -45,4 +45,4 @@ const Cart: FC<CardProps> = ({price, premium, isPremium, image, descriptionLink}
     </div>
   </article>
 );
-export default Cart;
+export default Card;

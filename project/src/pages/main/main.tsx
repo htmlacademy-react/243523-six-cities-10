@@ -1,42 +1,15 @@
 import {FC} from 'react';
-import Cart from 'components/cart';
+
+import Card from 'components/card';
+import Header from 'components/header';
 
 export type MainPageProps = {
   rentalAmount: number;
 }
 
-
 const Main: FC<MainPageProps> = ({rentalAmount}) => (
   <div className="page page--gray page--main">
-    <header className="header">
-      <div className="container">
-        <div className="header__wrapper">
-          <div className="header__left">
-            <a className="header__logo-link header__logo-link--active" href=" ">
-              <img className="header__logo" src="/img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-            </a>
-          </div>
-          <nav className="header__nav">
-            <ul className="header__nav-list">
-              <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href=" ">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  <span className="header__favorite-count">3</span>
-                </a>
-              </li>
-              <li className="header__nav-item">
-                <a className="header__nav-link" href=" ">
-                  <span className="header__signout">Sign out</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </header>
-
+    <Header/>
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="tabs">
@@ -96,15 +69,15 @@ const Main: FC<MainPageProps> = ({rentalAmount}) => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <Cart price={120} image='/img/apartment-01.jpg'
+              <Card price={120} image='/img/apartment-01.jpg'
                 descriptionLink='Beautiful & luxurious apartment at great location' premium='Premium' isPremium
               />
-              <Cart price={80} image='/img/room.jpg' descriptionLink='Wood and stone place'/>
-              <Cart price={132} image={'/img/apartment-02.jpg'} descriptionLink={'Canal View Prinsengracht'}/>
-              <Cart price={180} image={'/img/apartment-03.jpg'} descriptionLink={'Nice, cozy, warm big bed apartment'}
+              <Card price={80} image='/img/room.jpg' descriptionLink='Wood and stone place'/>
+              <Card price={132} image={'/img/apartment-02.jpg'} descriptionLink={'Canal View Prinsengracht'}/>
+              <Card price={180} image={'/img/apartment-03.jpg'} descriptionLink={'Nice, cozy, warm big bed apartment'}
                 premium={'Premium'} isPremium
               />
-              <Cart price={80} image={'/img/room.jpg'} descriptionLink={'Wood and stone place'}/>
+              <Card price={80} image={'/img/room.jpg'} descriptionLink={'Wood and stone place'}/>
             </div>
           </section>
           <div className="cities__right-section">
