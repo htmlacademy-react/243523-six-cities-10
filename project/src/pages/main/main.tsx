@@ -1,92 +1,61 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 
-import Card from 'components/card';
 import Header from 'components/header';
+import CardList from 'components/card-list';
+import CityList from 'components/city-list';
+import {Offer} from 'types/offers';
 
 export type MainPageProps = {
   rentalAmount: number;
+  offer: Offer[]
 }
 
-const Main: FC<MainPageProps> = ({rentalAmount}) => (
-  <div className="page page--gray page--main">
-    <Header/>
-    <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
-      <div className="tabs">
-        <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active" href=" ">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-      </div>
-      <div className="cities">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{rentalAmount} places to stay in Amsterdam</b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                <svg className="places__sorting-arrow" width="7" height="4">
-                  <use xlinkHref="#icon-arrow-select"></use>
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--opened">
-                <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                <li className="places__option" tabIndex={0}>Price: low to high</li>
-                <li className="places__option" tabIndex={0}>Price: high to low</li>
-                <li className="places__option" tabIndex={0}>Top rated first</li>
-              </ul>
-            </form>
-            <div className="cities__places-list places__list tabs__content">
-              <Card price={120} image='/img/apartment-01.jpg'
-                descriptionLink='Beautiful & luxurious apartment at great location' premium='Premium' isPremium
-              />
-              <Card price={80} image='/img/room.jpg' descriptionLink='Wood and stone place'/>
-              <Card price={132} image={'/img/apartment-02.jpg'} descriptionLink={'Canal View Prinsengracht'}/>
-              <Card price={180} image={'/img/apartment-03.jpg'} descriptionLink={'Nice, cozy, warm big bed apartment'}
-                premium={'Premium'} isPremium
-              />
-              <Card price={80} image={'/img/room.jpg'} descriptionLink={'Wood and stone place'}/>
-            </div>
+const Main: FC<MainPageProps> = ({rentalAmount, offer}) => {
+  const [activeCard, setActiveCard] = useState('0');
+  const handleClick = (id: string): void => {
+    setActiveCard(activeCard);
+  };
+  return (
+    <div className="page page--gray page--main">
+      <Header/>
+      <main className="page__main page__main--index">
+        <h1 className="visually-hidden">Cities</h1>
+        <div className="tabs">
+          <section className="locations container">
+            <CityList/>
           </section>
-          <div className="cities__right-section">
-            <section className="cities__map map"></section>
+        </div>
+        <div className="cities">
+          <div className="cities__places-container container">
+            <section className="cities__places places">
+              <h2 className="visually-hidden">Places</h2>
+              <b className="places__found">{rentalAmount} places to stay in Amsterdam</b>
+              <form className="places__sorting" action="#" method="get">
+                <span className="places__sorting-caption">Sort by</span>
+                <span className="places__sorting-type" tabIndex={0}>
+                  Popular
+                  <svg className="places__sorting-arrow" width="7" height="4">
+                    <use xlinkHref="#icon-arrow-select"></use>
+                  </svg>
+                </span>
+                <ul className="places__options places__options--custom places__options--opened">
+                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
+                  <li className="places__option" tabIndex={0}>Price: low to high</li>
+                  <li className="places__option" tabIndex={0}>Price: high to low</li>
+                  <li className="places__option" tabIndex={0}>Top rated first</li>
+                </ul>
+              </form>
+              <div className="cities__places-list places__list tabs__content">
+                <CardList offer={offer} handleClick={handleClick}/>
+              </div>
+            </section>
+            <div className="cities__right-section">
+              <section className="cities__map map"></section>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
-  </div>
-);
-
+      </main>
+    </div>
+  );
+};
 export default Main;
