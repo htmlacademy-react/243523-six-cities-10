@@ -1,21 +1,24 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 
 import Card from 'components/card';
 import {Offer} from 'types/offers';
 
 export type CardListProps = {
-  offer: Offer[];
+  offers: Offer[];
 }
 
-export const CardList: FC<CardListProps> = ({offer}) => (
-  <>
-    {offer.map((card, id) => {
-      const keyValue = `${id} - ${card.id}`;
-      return (
-        <Card card={card} key={keyValue}/>
-      );
-    })}
-  </>
-);
+export const CardList: FC<CardListProps> = ({offers}) => {
+  const [activeCard, setActiveCard] = useState<string>();
+
+  return (
+    <>
+      {offers.map((card) => (
+        <Card card={card} key={card.id} activeCard={activeCard}
+          onHover={() => (setActiveCard(card.id))}
+        />
+      ))}
+    </>
+  );
+};
 
 export default CardList;

@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC} from 'react';
 import {Link} from 'react-router-dom';
 
 import {Offer} from 'types/offers';
@@ -6,51 +6,46 @@ import {AppRoute, transformRoute} from 'types/const';
 
 export type CardProps = {
   card: Offer;
+  onHover: () => void;
+  activeCard?: string;
 }
 
-const Card: FC<CardProps> = ({card}) => {
-  const [activeCard, setActiveCard] = useState(card.id);
-
-  const onHover = () => {
-    setActiveCard(activeCard);
-  };
-
-  return (
-    <article className="cities__card place-card" onMouseEnter={onHover}>
-      {card.status &&
-        <div className="place-card__mark">
-          <span>{card.status}</span>
-        </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={''}>
-          <img className="place-card__image" src={card.image} width="260" height="200" alt=' '/>
-        </Link>
-      </div>
-      <div className="place-card__info">
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">{card.currency}{card.price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;night</span>
-          </div>
-          <button className="place-card__bookmark-button button" type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">To bookmarks</span>
-          </button>
+const Card: FC<CardProps> = ({card, onHover, activeCard}) => (
+  <article className="cities__card place-card" onMouseEnter={onHover}>
+    {card.status &&
+      <div className="place-card__mark">
+        <span>{card.status}</span>
+      </div>}
+    <div className="cities__image-wrapper place-card__image-wrapper">
+      <Link to={(transformRoute(`${AppRoute.Room}/${activeCard}`))}>
+        <img className="place-card__image" src={card.image} width="260" height="200" alt=' '/>
+      </Link>
+    </div>
+    <div className="place-card__info">
+      <div className="place-card__price-wrapper">
+        <div className="place-card__price">
+          <b className="place-card__price-value">{card.currency}{card.price}</b>
+          <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{width: '80%'}}></span>
-            <span className="visually-hidden">{card.rating}</span>
-          </div>
-        </div>
-        <h2 className="place-card__name">
-          <Link to={(transformRoute(`${AppRoute.Room}/${card.id}`))}>{card.description}</Link>
-        </h2>
-        <p className="place-card__type">{card.type}</p>
+        <button className="place-card__bookmark-button button" type="button">
+          <svg className="place-card__bookmark-icon" width="18" height="19">
+            <use xlinkHref="#icon-bookmark"></use>
+          </svg>
+          <span className="visually-hidden">To bookmarks</span>
+        </button>
       </div>
-    </article>
-  );
-};
+      <div className="place-card__rating rating">
+        <div className="place-card__stars rating__stars">
+          <span style={{width: '80%'}}></span>
+          <span className="visually-hidden">{card.rating}</span>
+        </div>
+      </div>
+      <h2 className="place-card__name">
+        <Link to={(transformRoute(`${AppRoute.Room}/${activeCard}`))}>{card.description}</Link>
+      </h2>
+      <p className="place-card__type">{card.type}</p>
+    </div>
+  </article>
+);
+
 export default Card;
