@@ -7,11 +7,12 @@ import {Offer} from 'types/offers';
 import {Titles} from 'types/const';
 
 export type FavoritesProps = {
-  offer: Offer[];
+  offers: Offer[];
 }
 
-export const Favorites: FC<FavoritesProps> = ({offer}) => {
-  const favoritesPlaces = offer.filter((item: Offer) => item.isFavorite);
+export const Favorites: FC<FavoritesProps> = ({offers}) => {
+  const favoritesPlaces = offers.filter((item: Offer) => item.isFavorite);
+
   return (
     <div className="page">
       <Header/>

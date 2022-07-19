@@ -12,20 +12,20 @@ import {AppRoute, AuthorisationStatus} from 'types/const';
 
 type AppScreenProps = {
   rentalAmount: number,
-  offer: Offer[];
+  offers: Offer[];
 }
 
-export const App: FC<AppScreenProps> = ({rentalAmount, offer}) => (
+export const App: FC<AppScreenProps> = ({rentalAmount, offers}) => (
   <BrowserRouter>
     <Routes>
-      <Route path={AppRoute.Root} element={<Main rentalAmount={rentalAmount} offer={offer}/>}/>
-      <Route index element={<Main rentalAmount={rentalAmount} offer={offer}/>}/>
-      <Route path={`${AppRoute.Room}/:id`} element={<Room offer={offer}/>}/>
+      <Route path={AppRoute.Root} element={<Main rentalAmount={rentalAmount} offers={offers}/>}/>
+      <Route index element={<Main rentalAmount={rentalAmount} offers={offers}/>}/>
+      <Route path={`${AppRoute.Room}/:id`} element={<Room offers={offers}/>}/>
       <Route
         path={AppRoute.Favorites}
         element={
           <PrivateRoute authorisationStatus={AuthorisationStatus.Auth}>
-            <Favorites offer={offer}/>
+            <Favorites offers={offers}/>
           </PrivateRoute>
         }
       />

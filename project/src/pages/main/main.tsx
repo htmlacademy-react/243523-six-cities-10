@@ -8,10 +8,10 @@ import {Titles} from 'types/const';
 
 export type MainPageProps = {
   rentalAmount: number;
-  offer: Offer[]
+  offers: Offer[]
 }
 
-const Main: FC<MainPageProps> = ({rentalAmount, offer}) => (
+const Main: FC<MainPageProps> = ({rentalAmount, offers}) => (
   <div className="page page--gray page--main">
     <Header/>
     <main className="page__main page__main--index">
@@ -42,7 +42,7 @@ const Main: FC<MainPageProps> = ({rentalAmount, offer}) => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <CardList offer={offer}/>
+              <CardList offers={offers}/>
             </div>
           </section>
           <div className="cities__right-section">

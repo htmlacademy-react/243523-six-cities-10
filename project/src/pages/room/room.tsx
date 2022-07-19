@@ -8,12 +8,12 @@ import {Offer} from 'types/offers';
 import {Titles} from 'types/const';
 
 export type RoomProps = {
-  offer: Offer[]
+  offers: Offer[]
 }
 
-export const Room: FC<RoomProps> = ({offer}) => {
+export const Room: FC<RoomProps> = ({offers}) => {
   const params = useParams();
-  const property = offer.find((item: Offer) => item.id === params.id);
+  const property = offers.find((item: Offer) => item.id === params.id);
 
   return (
     <div className="page">
@@ -186,7 +186,7 @@ export const Room: FC<RoomProps> = ({offer}) => {
             <section className="near-places places">
               <h2 className="near-places__title">{Titles.RoomNearByPlaces}</h2>
               <div className="near-places__list places__list">
-                <CardList offer={offer}/>
+                <CardList offers={offers}/>
               </div>
             </section>
           </div>
