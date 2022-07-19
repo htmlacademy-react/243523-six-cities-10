@@ -2,10 +2,20 @@ import {BaseSyntheticEvent, FC, useState} from 'react';
 
 export const ReviewForm: FC = () => {
   const [review, setReview] = useState('');
+  const [isEnabledSubmit, setEnabledSubmit] = useState(false);
+  const [submitResult, setSubmitResult] = useState(false);
 
   const handleChange = (event: BaseSyntheticEvent) => {
-    const value = event.target.value;
+    const {value} = event.target;
     setReview(value);
+    if (value.length >= 50) {
+      setEnabledSubmit(true);
+    }
+  };
+
+  const handleSubmit = (event: BaseSyntheticEvent) => {
+    event.preventDefault();
+    setSubmitResult(!submitResult);
   };
 
   return (
@@ -47,7 +57,7 @@ export const ReviewForm: FC = () => {
           </svg>
         </label>
       </div>
-      <textarea className="reviews__textarea form__textarea" id="review" name="review"
+      <textarea className="reviews__textarea form__textarea" id="review" name="review" value={review}
         placeholder="Tell how was your stay, what you like and what can be improved" onChange={handleChange}
       >
       </textarea>
@@ -56,7 +66,9 @@ export const ReviewForm: FC = () => {
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay
           with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled>Submit
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isEnabledSubmit}
+          onSubmit={handleSubmit}
+        >Submit
         </button>
       </div>
     </form>

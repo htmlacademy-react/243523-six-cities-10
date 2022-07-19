@@ -1,10 +1,11 @@
-import {FC, useState} from 'react';
+import {FC} from 'react';
 import {useParams} from 'react-router-dom';
 
 import Header from 'components/header';
 import CardList from 'components/card-list';
 import ReviewForm from 'components/review-form';
 import {Offer} from 'types/offers';
+import {Titles} from 'types/const';
 
 export type RoomProps = {
   offer: Offer[]
@@ -12,12 +13,8 @@ export type RoomProps = {
 
 export const Room: FC<RoomProps> = ({offer}) => {
   const params = useParams();
-  const [activeCard, setActiveCard] = useState(params.id);
-  const handleClick = (id: string): void => {
-    setActiveCard(id);
-  };
-  const getCardById = (id: number) => offer.find((item: Offer) => item.id === params.id);
-  const property = getCardById(Number(params.id));
+  const property = offer.find((item: Offer) => item.id === params.id);
+
   return (
     <div className="page">
       <Header/>
@@ -187,9 +184,9 @@ export const Room: FC<RoomProps> = ({offer}) => {
           </section>
           <div className="container">
             <section className="near-places places">
-              <h2 className="near-places__title">Other places in the neighbourhood</h2>
+              <h2 className="near-places__title">{Titles.RoomNearByPlaces}</h2>
               <div className="near-places__list places__list">
-                <CardList offer={offer} handleClick={handleClick}/>
+                <CardList offer={offer}/>
               </div>
             </section>
           </div>

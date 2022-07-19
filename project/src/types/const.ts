@@ -11,6 +11,13 @@ export enum AuthorisationStatus {
   UnKnown = 'UnKnown'
 }
 
-export const cities = ['Amsterdam', 'Brussels', 'Cologne', 'Dusseldorf', 'Hamburg', 'Paris'] as const;
+export enum Titles {
+  LoginSignIn = 'Sign in',
+  MainCities = 'Cities',
+  MainPlaces = 'Places',
+  FavoriteTitle = 'Saved listing',
+  RoomNearByPlaces = 'Other places in the neighbourhood'
+}
 
 export const paramPattern = /:\w+/;
+export const transformRoute = (uri: string, value?: string): string => uri.replace(paramPattern, value || '');

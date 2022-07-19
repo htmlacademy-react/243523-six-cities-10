@@ -4,6 +4,7 @@ import Header from 'components/header';
 import Footer from 'components/footer';
 import FavoriteCard from 'components/favorite-card';
 import {Offer} from 'types/offers';
+import {Titles} from 'types/const';
 
 export type FavoritesProps = {
   offer: Offer[];
@@ -17,7 +18,7 @@ export const Favorites: FC<FavoritesProps> = ({offer}) => {
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
           <section className="favorites">
-            <h1 className="favorites__title">Saved listing</h1>
+            <h1 className="favorites__title">{Titles.FavoriteTitle}</h1>
             {favoritesPlaces &&
               <FavoriteCard favoritesPlaces={favoritesPlaces}/>}
           </section>

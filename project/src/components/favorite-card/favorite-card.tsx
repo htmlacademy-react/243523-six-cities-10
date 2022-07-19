@@ -1,7 +1,8 @@
 import {FC, Fragment} from 'react';
+import {Link} from 'react-router-dom';
 
-import {Offer} from 'types/offers';
-import {cities} from 'types/const';
+import {Cities, Offer} from 'types/offers';
+import {AppRoute, transformRoute} from 'types/const';
 
 export type FavoriteCardProps = {
   favoritesPlaces: Offer[];
@@ -9,7 +10,7 @@ export type FavoriteCardProps = {
 
 export const FavoriteCard: FC<FavoriteCardProps> = ({favoritesPlaces}) => (
   <ul className="favorites__list">
-    {cities.map((city) => {
+    {Cities.map((city) => {
       const favoriteCity = favoritesPlaces.filter((favorite) => favorite.city.name === city);
       return (
         <Fragment key={city}>
@@ -17,19 +18,19 @@ export const FavoriteCard: FC<FavoriteCardProps> = ({favoritesPlaces}) => (
             <li key={favoriteOffer.id} className="favorites__locations-items">
               <div className="favorites__locations locations locations--current">
                 <div className="locations__item">
-                  <a className="locations__item-link" href=" ">
+                  <Link to={''} className="locations__item-link">
                     <span>{favoriteOffer.city.name}</span>
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="favorites__places">
                 <article className="favorites__card place-card">
                   <div className="favorites__image-wrapper place-card__image-wrapper">
-                    <a href=" ">
+                    <Link to={''}>
                       <img className="place-card__image" src={favoriteOffer.image} width="150" height="110"
                         alt=""
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="favorites__card-info place-card__info">
                     <div className="place-card__price-wrapper">
@@ -53,7 +54,10 @@ export const FavoriteCard: FC<FavoriteCardProps> = ({favoritesPlaces}) => (
                       </div>
                     </div>
                     <h2 className="place-card__name">
-                      <a href=" ">{favoriteOffer.description}</a>
+                      <Link
+                        to={(transformRoute(`${AppRoute.Room}/${favoriteOffer.id}`))}
+                      >{favoriteOffer.description}
+                      </Link>
                     </h2>
                     <p className="place-card__type">{favoriteOffer.type}</p>
                   </div>

@@ -1,25 +1,22 @@
-import {FC} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {FC, useState} from 'react';
+import {Link} from 'react-router-dom';
 
 import {Offer} from 'types/offers';
-import {AppRoute, paramPattern} from 'types/const';
+import {AppRoute, transformRoute} from 'types/const';
 
 export type CardProps = {
-  handleClick: (id: string) => void;
   card: Offer;
 }
 
-const Card: FC<CardProps> = ({handleClick, card}) => {
-  const transformRoute = (uri: string, value?: string): string => uri.replace(paramPattern, value || '');
-  const navigateTo = useNavigate();
+const Card: FC<CardProps> = ({card}) => {
+  const [activeCard, setActiveCard] = useState(card.id);
 
-  const handleMoveToActive = () => {
-    handleClick(card.id);
-    navigateTo(transformRoute(`${AppRoute.Room}/${card.id}`));
+  const onHover = () => {
+    setActiveCard(activeCard);
   };
 
   return (
-    <article className="cities__card place-card" onClick={handleMoveToActive}>
+    <article className="cities__card place-card" onMouseEnter={onHover}>
       {card.status &&
         <div className="place-card__mark">
           <span>{card.status}</span>

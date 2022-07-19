@@ -5,17 +5,14 @@ import {Offer} from 'types/offers';
 
 export type CardListProps = {
   offer: Offer[];
-  handleClick: (id: string) => void;
 }
 
-export const CardList: FC<CardListProps> = ({offer, handleClick}) => (
+export const CardList: FC<CardListProps> = ({offer}) => (
   <>
     {offer.map((card, id) => {
       const keyValue = `${id} - ${card.id}`;
       return (
-        <Card card={card} key={keyValue}
-          handleClick={handleClick}
-        />
+        <Card card={card} key={keyValue}/>
       );
     })}
   </>
