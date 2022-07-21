@@ -1,6 +1,8 @@
 import {FC} from 'react';
+import {Link} from 'react-router-dom';
 
 import Header from 'components/header';
+import {Titles} from 'types/const';
 
 export const Login: FC = () => (
   <div className="page page--gray page--login">
@@ -8,7 +10,7 @@ export const Login: FC = () => (
     <main className="page__main page__main--login">
       <div className="page__login-container container">
         <section className="login">
-          <h1 className="login__title">Sign in</h1>
+          <h1 className="login__title">{Titles.LoginSignIn}</h1>
           <form className="login__form form" action="#" method="post">
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
@@ -25,9 +27,9 @@ export const Login: FC = () => (
         </section>
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <a className="locations__item-link" href=" ">
+            <Link to={''} className="locations__item-link">
               <span>Amsterdam</span>
-            </a>
+            </Link>
           </div>
         </section>
       </div>

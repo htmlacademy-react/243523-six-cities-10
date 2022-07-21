@@ -1,57 +1,30 @@
 import {FC} from 'react';
 
-import Card from 'components/card';
 import Header from 'components/header';
+import CardList from 'components/card-list';
+import CityList from 'components/city-list';
+import {Offer} from 'types/offers';
+import {Titles} from 'types/const';
 
 export type MainPageProps = {
   rentalAmount: number;
+  offers: Offer[]
 }
 
-const Main: FC<MainPageProps> = ({rentalAmount}) => (
+const Main: FC<MainPageProps> = ({rentalAmount, offers}) => (
   <div className="page page--gray page--main">
     <Header/>
     <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
+      <h1 className="visually-hidden">{Titles.MainCities}</h1>
       <div className="tabs">
         <section className="locations container">
-          <ul className="locations__list tabs__list">
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Paris</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Cologne</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Brussels</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item tabs__item--active" href=" ">
-                <span>Amsterdam</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Hamburg</span>
-              </a>
-            </li>
-            <li className="locations__item">
-              <a className="locations__item-link tabs__item" href=" ">
-                <span>Dusseldorf</span>
-              </a>
-            </li>
-          </ul>
+          <CityList/>
         </section>
       </div>
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
+            <h2 className="visually-hidden">{Titles.MainPlaces}</h2>
             <b className="places__found">{rentalAmount} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
@@ -69,15 +42,7 @@ const Main: FC<MainPageProps> = ({rentalAmount}) => (
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              <Card price={120} image='/img/apartment-01.jpg'
-                descriptionLink='Beautiful & luxurious apartment at great location' premium='Premium' isPremium
-              />
-              <Card price={80} image='/img/room.jpg' descriptionLink='Wood and stone place'/>
-              <Card price={132} image={'/img/apartment-02.jpg'} descriptionLink={'Canal View Prinsengracht'}/>
-              <Card price={180} image={'/img/apartment-03.jpg'} descriptionLink={'Nice, cozy, warm big bed apartment'}
-                premium={'Premium'} isPremium
-              />
-              <Card price={80} image={'/img/room.jpg'} descriptionLink={'Wood and stone place'}/>
+              <CardList offers={offers}/>
             </div>
           </section>
           <div className="cities__right-section">

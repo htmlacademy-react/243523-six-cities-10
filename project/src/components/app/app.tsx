@@ -6,25 +6,26 @@ import Main from 'pages/main';
 import Room from 'pages/room';
 import Favorites from 'pages/favorites';
 import NotFound from 'pages/not-found';
+import PrivateRoute from 'components/private-route';
+import {Offer} from 'types/offers';
 import {AppRoute, AuthorisationStatus} from 'types/const';
-
-import PrivateRoute from '../private-route/private-route';
 
 type AppScreenProps = {
   rentalAmount: number,
+  offers: Offer[];
 }
 
-export const App: FC<AppScreenProps> = ({rentalAmount}) => (
+export const App: FC<AppScreenProps> = ({rentalAmount, offers}) => (
   <BrowserRouter>
     <Routes>
-      <Route path={AppRoute.Root} element={<Main rentalAmount={rentalAmount}/>}/>
-      <Route index element={<Main rentalAmount={rentalAmount}/>}/>
-      <Route path={AppRoute.Room} element={<Room/>}/>
+      <Route path={AppRoute.Root} element={<Main rentalAmount={rentalAmount} offers={offers}/>}/>
+      <Route index element={<Main rentalAmount={rentalAmount} offers={offers}/>}/>
+      <Route path={`${AppRoute.Room}/:id`} element={<Room offers={offers}/>}/>
       <Route
         path={AppRoute.Favorites}
         element={
-          <PrivateRoute authorisationStatus={AuthorisationStatus.NotAuth}>
-            <Favorites/>
+          <PrivateRoute authorisationStatus={AuthorisationStatus.Auth}>
+            <Favorites offers={offers}/>
           </PrivateRoute>
         }
       />
