@@ -56,7 +56,7 @@ export const FavoriteCard: FC<FavoriteCardProps> = ({favoritesPlaces}) => (
                     <h2 className="place-card__name">
                       <Link
                         to={(transformRoute(`${AppRoute.Room}/${favoriteOffer.id}`))}
-                      >{favoriteOffer.description}
+                      >{favoriteOffer.title}
                       </Link>
                     </h2>
                     <p className="place-card__type">{favoriteOffer.type}</p>

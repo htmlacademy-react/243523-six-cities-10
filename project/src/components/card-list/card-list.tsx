@@ -8,7 +8,7 @@ export type CardListProps = {
 }
 
 export const CardList: FC<CardListProps> = ({offers}) => {
-  const [activeCard, setActiveCard] = useState<string>();
+  const [activeCard, setActiveCard] = useState<number>();
 
   return (
     <>

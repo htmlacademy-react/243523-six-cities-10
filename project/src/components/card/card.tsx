@@ -7,7 +7,7 @@ import {AppRoute, transformRoute} from 'types/const';
 export type CardProps = {
   card: Offer;
   onHover: () => void;
-  activeCard?: string;
+  activeCard?: number;
 }
 
 const Card: FC<CardProps> = ({card, onHover, activeCard}) => (
@@ -41,7 +41,7 @@ const Card: FC<CardProps> = ({card, onHover, activeCard}) => (
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={(transformRoute(`${AppRoute.Room}/${activeCard}`))}>{card.description}</Link>
+        <Link to={(transformRoute(`${AppRoute.Room}/${activeCard}`))}>{card.title}</Link>
       </h2>
       <p className="place-card__type">{card.type}</p>
     </div>
