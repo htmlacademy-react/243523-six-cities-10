@@ -5,6 +5,7 @@ import CardList from 'components/card-list';
 import CityList from 'components/city-list';
 import {Offer} from 'types/offers';
 import {Titles} from 'types/const';
+import CitiesMap from 'components/cities-map';
 
 export type MainPageProps = {
   rentalAmount: number;
@@ -46,7 +47,9 @@ const Main: FC<MainPageProps> = ({rentalAmount, offers}) => (
             </div>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <section className="cities__map map">
+              <CitiesMap offers={offers}/>
+            </section>
           </div>
         </div>
       </div>
