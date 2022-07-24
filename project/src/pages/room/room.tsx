@@ -2,7 +2,6 @@ import {FC} from 'react';
 import {useParams} from 'react-router-dom';
 
 import Header from 'components/header';
-import CardList from 'components/card-list';
 import ReviewForm from 'components/review-form';
 import {Offer} from 'types/offers';
 import {Titles} from 'types/const';
@@ -159,7 +158,7 @@ export const Room: FC<RoomProps> = ({offers}) => {
             <section className="near-places places">
               <h2 className="near-places__title">{Titles.RoomNearByPlaces}</h2>
               <div className="near-places__list places__list">
-                <CardList offers={offers}/>
+                {/*<CardList offers={offers}/>*/}
               </div>
             </section>
           </div>

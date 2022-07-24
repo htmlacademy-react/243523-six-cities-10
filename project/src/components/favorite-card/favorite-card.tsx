@@ -1,8 +1,9 @@
 import {FC, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 
-import {Cities, Offer} from 'types/offers';
+import {Offer} from 'types/offers';
 import {AppRoute, transformRoute} from 'types/const';
+import {cities} from 'mocks/cities';
 
 export type FavoriteCardProps = {
   favoritesPlaces: Offer[];
@@ -10,16 +11,16 @@ export type FavoriteCardProps = {
 
 export const FavoriteCard: FC<FavoriteCardProps> = ({favoritesPlaces}) => (
   <ul className="favorites__list">
-    {Cities.map((city) => {
-      const favoriteCity = favoritesPlaces.filter((favorite) => favorite.city.name === city);
+    {cities.map((city) => {
+      const favoriteCity = favoritesPlaces.filter((favorite) => favorite.city.title === city.title);
       return (
-        <Fragment key={city}>
+        <Fragment key={city.title}>
           {favoriteCity.map((favoriteOffer) => (
             <li key={favoriteOffer.id} className="favorites__locations-items">
               <div className="favorites__locations locations locations--current">
                 <div className="locations__item">
                   <Link to={''} className="locations__item-link">
-                    <span>{favoriteOffer.city.name}</span>
+                    <span>{favoriteOffer.city.title}</span>
                   </Link>
                 </div>
               </div>

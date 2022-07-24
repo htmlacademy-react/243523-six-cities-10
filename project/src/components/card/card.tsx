@@ -6,18 +6,20 @@ import {AppRoute, transformRoute} from 'types/const';
 
 export type CardProps = {
   card: Offer;
-  onHover: () => void;
-  activeCard?: number;
+  onListItemHover: (listItemTitle: string) => void;
 }
 
-const Card: FC<CardProps> = ({card, onHover, activeCard}) => (
-  <article className="cities__card place-card" onMouseEnter={onHover}>
+const Card: FC<CardProps> = ({card, onListItemHover}) => (
+  <article className="cities__card place-card"
+    onMouseEnter={() => onListItemHover(card.title)}
+    onMouseLeave={() => onListItemHover('')}
+  >
     {card.status &&
       <div className="place-card__mark">
         <span>{card.status}</span>
       </div>}
     <div className="cities__image-wrapper place-card__image-wrapper">
-      <Link to={(transformRoute(`${AppRoute.Room}/${activeCard}`))}>
+      <Link to={(transformRoute(`${AppRoute.Room}/${card.id}`))}>
         <img className="place-card__image" src={card.image} width="260" height="200" alt=' '/>
       </Link>
     </div>
@@ -41,7 +43,7 @@ const Card: FC<CardProps> = ({card, onHover, activeCard}) => (
         </div>
       </div>
       <h2 className="place-card__name">
-        <Link to={(transformRoute(`${AppRoute.Room}/${activeCard}`))}>{card.title}</Link>
+        <Link to={(transformRoute(`${AppRoute.Room}/${card.id}`))}>{card.title}</Link>
       </h2>
       <p className="place-card__type">{card.type}</p>
     </div>

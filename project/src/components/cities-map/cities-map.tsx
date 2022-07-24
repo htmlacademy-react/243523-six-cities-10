@@ -2,9 +2,9 @@ import {FC, useEffect, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Icon, Marker} from 'leaflet';
 
-import {Offer} from 'types/offers';
-import {AppRoute, transformRoute} from 'types/const';
 import useMap from 'hooks/use-map';
+import {City, Offer} from 'types/offers';
+import {AppRoute, transformRoute} from 'types/const';
 
 const defaultIcon = new Icon({
   iconUrl: '/img/pin.svg',
@@ -20,35 +20,39 @@ const currentIcon = new Icon({
 
 export type CitiesMapProps = {
   offers: Offer[];
+  currentCity: City;
+  selectedPoint?: Offer;
 }
 
-export const CitiesMap: FC<CitiesMapProps> = ({offers}) => {
-  const [{city}] = offers;
+export const CitiesMap: FC<CitiesMapProps> = ({offers, selectedPoint, currentCity}) => {
   const mapRef = useRef(null);
   const navigate = useNavigate();
-  const property = offers.find((item: Offer) => item.id);
-
-  const map = useMap(city.location, mapRef);
+  const map = useMap(currentCity, mapRef);
 
   useEffect(() => {
-    const markers: Marker[] = [];
     if (map) {
+      const markers: Marker[] = [];
+      const zoom = 12;
       offers.forEach(({location, id, title}) => {
-        const marker = new Marker([location.latitude, location.longitude]);
+        const marker = new Marker({
+          lat: location.latitude,
+          lng: location.longitude,
+        }).bindPopup(title);
+        map.flyTo([location.latitude, location.longitude], zoom, {duration: 1.5});
         markers.push(marker);
-        marker.bindPopup(title);
-        id === property?.id && title === property.title ? marker.setIcon(currentIcon).addTo(map) : marker.setIcon(defaultIcon).addTo(map);
-        marker.on('click', () => {
-          window.scrollTo(0, 0);
-          return navigate(transformRoute(`${AppRoute.Room}/${id}`));
-        });
+        marker
+          .setIcon(
+            selectedPoint && selectedPoint.id === id
+              ? currentIcon
+              : defaultIcon
+          )
+          .addTo(map);
+        marker.on('click', () => navigate(transformRoute(`${AppRoute.Room}/${id}`)));
         marker.on('mouseover', () => marker.openPopup());
-        marker.on('mouseout', () => marker.closePopup());
       });
-
       return () => markers.forEach((marker) => map.removeLayer(marker));
     }
-  }, [map, property, offers, navigate]);
+  }, [map, navigate, offers, selectedPoint]);
 
   return (
     <div data-testid="map" style={{
