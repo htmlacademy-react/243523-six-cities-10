@@ -5,11 +5,11 @@ export const offers: Offer[] = [
     id: 1,
     type: 'Apartment',
     city: {
-      name: 'Amsterdam',
+      title: 'Amsterdam',
       location: {
         latitude: 52.3909553943508,
         longitude: 4.85309666406198,
-        zoom: 15
+        zoom: 3
       }
     },
     image: '/img/apartment-01.jpg',
@@ -42,7 +42,7 @@ export const offers: Offer[] = [
     location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
-      zoom: 15
+      zoom: 3
     },
     maxAdults: 2,
     previewImage: 'string',
@@ -52,11 +52,11 @@ export const offers: Offer[] = [
     id: 2,
     type: 'Apartment',
     city: {
-      name: 'Amsterdam',
+      title: 'Amsterdam',
       location: {
         latitude: 52.369553943508,
         longitude: 4.85309666406198,
-        zoom: 15,
+        zoom: 3,
       },
     },
     image: '/img/room.jpg',
@@ -88,7 +88,7 @@ export const offers: Offer[] = [
     location: {
       latitude: 52.369553943508,
       longitude: 4.85309666406198,
-      zoom: 15,
+      zoom: 3,
     },
     maxAdults: 2,
     previewImage: 'string',
@@ -98,11 +98,11 @@ export const offers: Offer[] = [
     id: 3,
     type: 'Apartment',
     city: {
-      name: 'Amsterdam',
+      title: 'Amsterdam',
       location: {
         latitude: 52.3909553943508,
         longitude: 4.929309666406198,
-        zoom: 15
+        zoom: 3
       }
     },
     image: '/img/apartment-02.jpg',
@@ -134,7 +134,7 @@ export const offers: Offer[] = [
     location: {
       latitude: 52.3909553943508,
       longitude: 4.929309666406198,
-      zoom: 15
+      zoom: 3
     },
     maxAdults: 2,
     previewImage: 'string',
@@ -144,11 +144,11 @@ export const offers: Offer[] = [
     id: 4,
     type: 'Apartment',
     city: {
-      name: 'Amsterdam',
+      title: 'Amsterdam',
       location: {
         latitude: 52.3809553943508,
         longitude: 4.939309666406198,
-        zoom: 15
+        zoom: 3
       },
     },
     image: '/img/apartment-03.jpg',
@@ -181,7 +181,7 @@ export const offers: Offer[] = [
     location: {
       latitude: 52.3809553943508,
       longitude: 4.939309666406198,
-      zoom: 15
+      zoom: 3
     },
     maxAdults: 2,
     previewImage: 'string',

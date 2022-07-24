@@ -1,7 +1,3 @@
-export const Cities = ['Amsterdam', 'Brussels', 'Cologne', 'Dusseldorf', 'Hamburg', 'Paris'] as const;
-
-export type CityName = typeof Cities[number];
-
 export type Location = {
   latitude: number
   longitude: number
@@ -9,7 +5,7 @@ export type Location = {
 }
 
 export type City = {
-  name: CityName,
+  title: string,
   location: Location,
 }
 
