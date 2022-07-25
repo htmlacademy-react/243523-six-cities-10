@@ -1,19 +1,28 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import {useParams} from 'react-router-dom';
 
 import Header from 'components/header';
 import ReviewForm from 'components/review-form';
-import {Offer} from 'types/offers';
+import CitiesMap from 'components/cities-map';
+import CardList from 'components/card-list';
+import {City, Offer} from 'types/offers';
 import {Titles} from 'types/const';
 import {Reviews} from 'mocks/reviews';
 
 export type RoomProps = {
-  offers: Offer[]
+  offers: Offer[],
+  currentCity: City;
 }
 
-export const Room: FC<RoomProps> = ({offers}) => {
+export const Room: FC<RoomProps> = ({offers, currentCity}) => {
   const params = useParams();
   const property = offers.find((item: Offer) => item.id === Number(params.id));
+  const [selectedPoint, setSelectedPoint] = useState<Offer>();
+
+  const onListItemHover = (listItemTitle: string) => {
+    const currentOffer = offers.find((offer) => offer.title === listItemTitle);
+    setSelectedPoint(currentOffer);
+  };
 
   return (
     <div className="page">
@@ -152,13 +161,15 @@ export const Room: FC<RoomProps> = ({offers}) => {
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <section className="property__map map">
+              <CitiesMap offers={offers} currentCity={currentCity} selectedPoint={selectedPoint}/>
+            </section>
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">{Titles.RoomNearByPlaces}</h2>
               <div className="near-places__list places__list">
-                {/*<CardList offers={offers}/>*/}
+                <CardList offers={offers} onListItemHover={onListItemHover}/>
               </div>
             </section>
           </div>

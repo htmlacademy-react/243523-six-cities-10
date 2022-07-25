@@ -23,7 +23,9 @@ export const App: FC<AppScreenProps> = ({rentalAmount, offers, currentCity}) => 
         element={<Main rentalAmount={rentalAmount} offers={offers} currentCity={currentCity}/>}
       />
       <Route index element={<Main rentalAmount={rentalAmount} offers={offers} currentCity={currentCity}/>}/>
-      <Route path={`${AppRoute.Room}/:id`} element={<Room offers={offers}/>}/>
+      <Route path={`${AppRoute.Room}/:id`}
+        element={<Room offers={offers} currentCity={currentCity}/>}
+      />
       <Route
         path={AppRoute.Favorites}
         element={

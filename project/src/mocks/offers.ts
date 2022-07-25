@@ -5,7 +5,7 @@ export const offers: Offer[] = [
     id: 1,
     type: 'Apartment',
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
       location: {
         latitude: 52.3909553943508,
         longitude: 4.85309666406198,
@@ -52,7 +52,7 @@ export const offers: Offer[] = [
     id: 2,
     type: 'Apartment',
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
       location: {
         latitude: 52.369553943508,
         longitude: 4.85309666406198,
@@ -98,7 +98,7 @@ export const offers: Offer[] = [
     id: 3,
     type: 'Apartment',
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
       location: {
         latitude: 52.3909553943508,
         longitude: 4.929309666406198,
@@ -144,7 +144,196 @@ export const offers: Offer[] = [
     id: 4,
     type: 'Apartment',
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
+        zoom: 3
+      },
+    },
+    image: '/img/apartment-03.jpg',
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.\n' +
+      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    currency: '€',
+    price: 180,
+    rating: 5,
+    status: 'Premium',
+    bedrooms: 2,
+    isFavorite: true,
+    isPremium: true,
+    goods: ['wi-fi',
+      ' Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      ' Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'],
+    host: {
+      avatarUrl: '/img/avatar.svg',
+      id: 1,
+      isPro: true,
+      name: 'Jassy',
+    },
+    images: ['string'],
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 3
+    },
+    maxAdults: 2,
+    previewImage: 'string',
+    title: 'Nice, cozy, warm big bed apartment',
+  },
+];
+
+export const offersNearBy: Offer[] = [
+  {
+    id: 1,
+    type: 'Apartment',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
+        zoom: 3
+      }
+    },
+    image: '/img/apartment-01.jpg',
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.\n' +
+      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    currency: '€',
+    price: 120,
+    rating: 5,
+    status: 'Premium',
+    isPremium: true,
+    isFavorite: true,
+    bedrooms: 2,
+    goods: ['wi-fi',
+      ' Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      ' Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'],
+    host: {
+      avatarUrl: '/img/avatar-angelina.jpg',
+      id: 1,
+      isPro: true,
+      name: 'Jassy',
+    },
+    images: ['string'],
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 3
+    },
+    maxAdults: 2,
+    previewImage: 'string',
+    title: 'Beautiful & luxurious studio at great location',
+  },
+  {
+    id: 2,
+    type: 'Apartment',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.369553943508,
+        longitude: 4.85309666406198,
+        zoom: 3,
+      },
+    },
+    image: '/img/room.jpg',
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.\n' +
+      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    currency: '€',
+    price: 80,
+    rating: 4,
+    bedrooms: 1,
+    isFavorite: false,
+    isPremium: false,
+    goods: ['wi-fi',
+      ' Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      ' Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'],
+    host: {
+      avatarUrl: '/img/avatar.svg',
+      id: 1,
+      isPro: true,
+      name: 'Jassy',
+    },
+    images: ['string'],
+    location: {
+      latitude: 52.369553943508,
+      longitude: 4.85309666406198,
+      zoom: 3,
+    },
+    maxAdults: 2,
+    previewImage: 'string',
+    title: 'Wood and stone place',
+  },
+  {
+    id: 3,
+    type: 'Apartment',
+    city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
+        zoom: 3
+      }
+    },
+    image: '/img/apartment-02.jpg',
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.\n' +
+      'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
+    currency: '€',
+    price: 132,
+    rating: 3,
+    bedrooms: 3,
+    isPremium: false,
+    isFavorite: false,
+    goods: ['wi-fi',
+      ' Washing machine',
+      'Towels',
+      'Heating',
+      'Coffee machine',
+      'Baby seat',
+      ' Kitchen',
+      'Dishwasher',
+      'Cabel TV',
+      'Fridge'],
+    host: {
+      avatarUrl: '/img/avatar.svg',
+      id: 1,
+      isPro: true,
+      name: 'Jassy',
+    },
+    images: ['string'],
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 3
+    },
+    maxAdults: 2,
+    previewImage: 'string',
+    title: 'Canal View Prinsengracht',
+  },
+  {
+    id: 4,
+    type: 'Apartment',
+    city: {
+      name: 'Amsterdam',
       location: {
         latitude: 52.3809553943508,
         longitude: 4.939309666406198,

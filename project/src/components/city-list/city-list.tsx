@@ -11,12 +11,12 @@ export type CityListProps = {
 export const CityList: FC<CityListProps> = ({currentCity}) => (
   <ul className="locations__list tabs__list">
     {cities.map((city) => (
-      <li key={city.title} className="locations__item">
+      <li key={city.name} className="locations__item">
         <Link to={''} className={`locations__item-link tabs__item ${currentCity === city
           ? 'tabs__item--active'
           : ''}`}
         >
-          <span>{city.title}</span>
+          <span>{city.name}</span>
         </Link>
       </li>
     ))}

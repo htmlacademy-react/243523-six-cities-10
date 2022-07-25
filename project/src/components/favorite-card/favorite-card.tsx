@@ -12,15 +12,15 @@ export type FavoriteCardProps = {
 export const FavoriteCard: FC<FavoriteCardProps> = ({favoritesPlaces}) => (
   <ul className="favorites__list">
     {cities.map((city) => {
-      const favoriteCity = favoritesPlaces.filter((favorite) => favorite.city.title === city.title);
+      const favoriteCity = favoritesPlaces.filter((favorite) => favorite.city.name === city.name);
       return (
-        <Fragment key={city.title}>
+        <Fragment key={city.name}>
           {favoriteCity.map((favoriteOffer) => (
             <li key={favoriteOffer.id} className="favorites__locations-items">
               <div className="favorites__locations locations locations--current">
                 <div className="locations__item">
                   <Link to={''} className="locations__item-link">
-                    <span>{favoriteOffer.city.title}</span>
+                    <span>{favoriteOffer.city.name}</span>
                   </Link>
                 </div>
               </div>

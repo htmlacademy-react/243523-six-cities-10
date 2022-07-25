@@ -2,7 +2,7 @@ import {City} from 'types/offers';
 
 export const cities: City[] = [
   {
-    title: 'Amsterdam',
+    name: 'Amsterdam',
     location: {
       latitude: 52.371807,
       longitude: 4.896029,
@@ -10,7 +10,7 @@ export const cities: City[] = [
     }
   },
   {
-    title: 'Brussels',
+    name: 'Brussels',
     location: {
       latitude: 50.8503396,
       longitude: 4.3517103,
@@ -18,7 +18,7 @@ export const cities: City[] = [
     }
   },
   {
-    title: 'Cologne',
+    name: 'Cologne',
     location: {
       latitude: 50.933594,
       longitude: 6.961899,
@@ -26,7 +26,7 @@ export const cities: City[] = [
     }
   },
   {
-    title: 'Paris',
+    name: 'Paris',
     location: {
       latitude: 48.864716,
       longitude: 2.349014,
@@ -34,7 +34,7 @@ export const cities: City[] = [
     }
   },
   {
-    title: 'Hamburg',
+    name: 'Hamburg',
     location: {
       latitude: 53.551086,
       longitude: 9.993682,
@@ -42,7 +42,7 @@ export const cities: City[] = [
     }
   },
   {
-    title: 'Dusseldorf',
+    name: 'Dusseldorf',
     location: {
       latitude: 51.233334,
       longitude: 6.783333,
