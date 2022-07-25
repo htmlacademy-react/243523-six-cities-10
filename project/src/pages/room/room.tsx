@@ -1,19 +1,28 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import {useParams} from 'react-router-dom';
 
 import Header from 'components/header';
-import CardList from 'components/card-list';
 import ReviewForm from 'components/review-form';
-import {Offer} from 'types/offers';
+import CitiesMap from 'components/cities-map';
+import CardList from 'components/card-list';
+import {City, Offer} from 'types/offers';
 import {Titles} from 'types/const';
+import {Reviews} from 'mocks/reviews';
 
 export type RoomProps = {
-  offers: Offer[]
+  offers: Offer[],
+  currentCity: City;
 }
 
-export const Room: FC<RoomProps> = ({offers}) => {
+export const Room: FC<RoomProps> = ({offers, currentCity}) => {
   const params = useParams();
-  const property = offers.find((item: Offer) => item.id === params.id);
+  const property = offers.find((item: Offer) => item.id === Number(params.id));
+  const [selectedPoint, setSelectedPoint] = useState<Offer>();
+
+  const onListItemHover = (listItemTitle: string) => {
+    const currentOffer = offers.find((offer) => offer.title === listItemTitle);
+    setSelectedPoint(currentOffer);
+  };
 
   return (
     <div className="page">
@@ -51,7 +60,7 @@ export const Room: FC<RoomProps> = ({offers}) => {
                   </div>}
                 <div className="property__name-wrapper">
                   <h1 className="property__name">
-                    {property.description}
+                    {property.title}
                   </h1>
                   <button className="property__bookmark-button button" type="button">
                     <svg className="property__bookmark-icon" width="31" height="33">
@@ -72,49 +81,22 @@ export const Room: FC<RoomProps> = ({offers}) => {
                     {property.type}
                   </li>
                   <li className="property__feature property__feature--bedrooms">
-                    3 Bedrooms
+                    {property.bedrooms} Bedrooms
                   </li>
                   <li className="property__feature property__feature--adults">
-                    Max 4 adults
+                    Max {property.maxAdults} adults
                   </li>
                 </ul>
                 <div className="property__price">
-                  <b className="property__price-value">&euro;120</b>
+                  <b className="property__price-value">{property.currency}{property.price}</b>
                   <span className="property__price-text">&nbsp;night</span>
                 </div>
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    <li className="property__inside-item">
-                      Wi-Fi
-                    </li>
-                    <li className="property__inside-item">
-                      Washing machine
-                    </li>
-                    <li className="property__inside-item">
-                      Towels
-                    </li>
-                    <li className="property__inside-item">
-                      Heating
-                    </li>
-                    <li className="property__inside-item">
-                      Coffee machine
-                    </li>
-                    <li className="property__inside-item">
-                      Baby seat
-                    </li>
-                    <li className="property__inside-item">
-                      Kitchen
-                    </li>
-                    <li className="property__inside-item">
-                      Dishwasher
-                    </li>
-                    <li className="property__inside-item">
-                      Cabel TV
-                    </li>
-                    <li className="property__inside-item">
-                      Fridge
-                    </li>
+                    {property.goods.map((inside) => (
+                      <li key={inside} className="property__inside-item">{inside}</li>
+                    ))}
                   </ul>
                 </div>
                 <div className="property__host">
@@ -127,66 +109,67 @@ export const Room: FC<RoomProps> = ({offers}) => {
                       />
                     </div>
                     <span className="property__user-name">
-                    Angelina
+                      {property.host.name}
                     </span>
-                    <span className="property__user-status">
-                    Pro
-                    </span>
+                    {property.host.isPro &&
+                      <span className="property__user-status">
+                      Pro
+                      </span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">
-                      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The
-                      building is green and from 18th century.
-                    </p>
-                    <p className="property__text">
-                      An independent House, strategically located between Rembrand Square and National Opera, but where
-                      the
-                      bustle of the city comes to rest in this alley flowery and colorful.
+                      {property.description}
                     </p>
                   </div>
                 </div>
                 <section className="property__reviews reviews">
-                  <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">1</span></h2>
-                  <ul className="reviews__list">
-                    <li className="reviews__item">
-                      <div className="reviews__user user">
-                        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                          <img className="reviews__avatar user__avatar" src="/img/avatar-max.jpg" width="54"
-                            height="54"
-                            alt="Reviews avatar"
-                          />
-                        </div>
-                        <span className="reviews__user-name">
-                        Max
-                        </span>
-                      </div>
-                      <div className="reviews__info">
-                        <div className="reviews__rating rating">
-                          <div className="reviews__stars rating__stars">
-                            <span style={{width: '80%'}}></span>
-                            <span className="visually-hidden">Rating</span>
+                  <h2 className="reviews__title">Reviews &middot;
+                    <span className="reviews__amount">
+                      {Reviews.length}
+                    </span>
+                  </h2>
+                  {Reviews.map((review) => (
+                    <ul className="reviews__list" key={review.id}>
+                      <li className="reviews__item">
+                        <div className="reviews__user user">
+                          <div className="reviews__avatar-wrapper user__avatar-wrapper">
+                            <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54"
+                              height="54"
+                              alt="Reviews avatar"
+                            />
                           </div>
+                          <span className="reviews__user-name">
+                            {review.user.name}
+                          </span>
                         </div>
-                        <p className="reviews__text">
-                          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.
-                          The
-                          building is green and from 18th century.
-                        </p>
-                        <time className="reviews__time" dateTime="2019-04-24">April 2019</time>
-                      </div>
-                    </li>
-                  </ul>
+                        <div className="reviews__info">
+                          <div className="reviews__rating rating">
+                            <div className="reviews__stars rating__stars">
+                              <span style={{width: '80%'}}></span>
+                              <span className="visually-hidden">Rating</span>
+                            </div>
+                          </div>
+                          <p className="reviews__text">
+                            {review.comment}
+                          </p>
+                          <time className="reviews__time" dateTime="2019-04-24">{review.date}</time>
+                        </div>
+                      </li>
+                    </ul>
+                  ))}
                   <ReviewForm/>
                 </section>
               </div>
             </div>
-            <section className="property__map map"></section>
+            <section className="property__map map">
+              <CitiesMap offers={offers} currentCity={currentCity} selectedPoint={selectedPoint}/>
+            </section>
           </section>
           <div className="container">
             <section className="near-places places">
               <h2 className="near-places__title">{Titles.RoomNearByPlaces}</h2>
               <div className="near-places__list places__list">
-                <CardList offers={offers}/>
+                <CardList offers={offers} onListItemHover={onListItemHover}/>
               </div>
             </section>
           </div>
